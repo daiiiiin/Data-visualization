@@ -1,0 +1,81 @@
+---
+# title: "essay, one-paged-note, homework"
+# subtitle: "subtitle"
+# author: "심민규 `mksim@seoultech.ac.kr`"
+# date: "Lastly updated on `r Sys.Date()`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    highlight: haddock
+    keep_tex: yes
+    includes:
+      in_header: latex_support/latex-topmatter_pdf.tex
+    # toc: yes # table of contents yes/no/True/False
+    # toc_depth: 2 # toc depth 1 or 2 recommended
+    number_sections: False # yes/no/True/False
+  html_document:
+    toc: yes
+    toc_depth: '1'
+    df_print: paged
+monofont: Courier New # Consolas or Courier New
+smaller: yes
+classoption: a4paper # letter or a4paper
+header-includes:
+- \usepackage{tikz}
+- \usepackage{pgfplots}
+- \pgfplotsset{compat=1.17}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+```
+
+<!-- \begin{center} -->
+<!-- \vspace{100pt} -->
+<!-- \includegraphics[height=0.3in]{latex_support/logo_ds.png}  -->
+<!-- \end{center} -->
+
+\begin{center}
+\begin{Large}
+GGPLOT 활용하기\\ 
+\end{Large}
+\begin{large}
+연비는 정규 분포를 따른다고 할 수 없다
+\end{large}
+\end{center}
+
+**[1] 고속도로 연비(hwy)에 대한 히스토그램**  
+```{r fig.align="center", fig.show='hold', out.height="20%", out.width="80%"}
+knitr::include_graphics("hw8_111.png")
+knitr::include_graphics("hw8_222.png")
+```
+
+
+**[2] 고속도로 연비(hwy)에 대한 히스토그램**  
+```{r fig.align="center", fig.show='hold', out.height="20%", out.width="80%"}
+knitr::include_graphics("hw8_444.png")
+```
+
+
+**[3] 고속도로 연비는 정규분포와 유사하다고 할 수 있을까?**  
+[그림2]bins=25인 경우와 [그림4]bins=10인 경우를 비교해서 보면 [그림4]로 인해 마치 연비가 정규분포와 유사하다고 생각할 수 있겠지만 연비는 정규분포라고 할 수 없다. 단지 bins를 작은 값으로 설정했다고 정규분포로 보는 것은 타당하지 않다.  Q-Q Plot은 그래프 상의 점들이 직선 모양을 보이면 해당 데이터가 정규 분포를 따른다고 할 수 있다. 
+실제로 정규성을 검정할 수 있는 'Q-Q Plot'을 그려보면 연비는 정규분포가 아님을 알 수 있다. 
+[그림5]는 연비에 대해 Q-Q Plot을 그린 그래프이다. 그래프 상의 점이 직선을 유지한다고 할 수 없으므로 연비는 정규분포를 따른다고 할 수 없다.
+```{r fig.align="center", fig.show='hold', out.height="23%", out.width="80%"}
+knitr::include_graphics("hw8_555.png")
+```
+
+
+
+
+
+
+\newpage
+
+```{r, echo=TRUE, results='hide'}
+"Written by Lee, Da-In"
+```
+
+

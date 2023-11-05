@@ -1,0 +1,105 @@
+---
+# title: "essay, one-paged-note, homework"
+# subtitle: "subtitle"
+# author: "심민규 `mksim@seoultech.ac.kr`"
+# date: "Lastly updated on `r Sys.Date()`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    highlight: haddock
+    keep_tex: yes
+    includes:
+      in_header: latex_support/latex-topmatter_pdf.tex
+    # toc: yes # table of contents yes/no/True/False
+    # toc_depth: 2 # toc depth 1 or 2 recommended
+    number_sections: False # yes/no/True/False
+  html_document:
+    toc: yes
+    toc_depth: '1'
+    df_print: paged
+monofont: Courier New # Consolas or Courier New
+smaller: yes
+classoption: a4paper # letter or a4paper
+header-includes:
+- \usepackage{tikz}
+- \usepackage{pgfplots}
+- \pgfplotsset{compat=1.17}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+```
+
+<!-- \begin{center} -->
+<!-- \vspace{100pt} -->
+<!-- \includegraphics[height=0.3in]{latex_support/logo_ds.png}  -->
+<!-- \end{center} -->
+
+\begin{center}
+\begin{Large}
+좋은 그래프를 위하여\\ 
+\end{Large}
+\begin{large}
+실린더 개수에 따른 고속도로 연비의 분포를 그래프로 그려보자
+\end{large}
+\end{center}
+
+
+
+
+MPG 데이터의 실린더 개수와 고속도로의 연비간의 관계를 살펴보기 위해 알맞은 그래프를 찾아보자. 각 변수의
+특징과 그래프의 특징을 고려해 실린더 개수와 고속도로의 연비의 관계를 잘 나타내는 그래프를 그려야 한다.  
+  
+  
+다음의 그래프에 대해 3가지 프레임워크를 살펴보자.  
+```{r echo=FALSE, fig.align="center", fig.show='hold', out.height="30%", out.width="80%"}
+knitr::include_graphics("hw6_1__.png")
+```
+
+```{r eval=FALSE, fig.align="center", include=FALSE, out.height="20%", out.width="80%"}
+library(ggplot2)
+
+ggplot(data=mpg, aes(x=cyl, y=hwy)) + geom_point() + theme_bw() + theme(axis.title=element_text(size=13,face='bold'))
+
+```
+
+    
+
+이 그래프는 실린더 개수와 고속도로 연비의 관계를 잘 보여주고 있다고 할 수 없다. [그림2]를 참고하면 실린더의 개수에 대해 살펴보면 범주형 변수처럼 카테고리가 나누어져 있다고 볼 수 있기 때문이다. 
+```{r echo=FALSE, fig.align="center", fig.show='hold', out.height="20%", out.width="80%"}
+knitr::include_graphics("hw6_22__.png")
+knitr::include_graphics("hw6_3_3.png")
+```
+```{r eval=FALSE, fig.align="center", include=FALSE, out.height="20%", out.width="80%"}
+library(dplyr)
+mpg %>% ggplot(aes(cyl)) + geom_bar() + theme_bw() + theme(axis.title=element_text(size=13,face='bold'))
+
+```
+
+따라서 단순히 산점도로 실린더 개수와 고속도로 연비의 관계를 표현하기에는 적절하지 않다고 생각한다. [그림3]과 같이 실린더 개수에 따른 고속도로 연비의 상자그림을 그리면 실린더가 몇 개일때 고속도로 연비의 분포가 어떻게 나타나는지 쉽게 확인할 수 있다. 그림의 수평선은 연비의 평균(23.44)을 그은 선이다. 실린더의 개수가 4개, 5개, 6개이면 연비가 평균 이상, 실린더가 8개이면 연비가 평균 이하라는 것을 알 수 있다.^[[그림3]은 실린더의 개수에 따른 데이터의 개수가 일정하지 않기 때문에 이 점을 유의해야한다.]
+```{r eval=FALSE, fig.align="center", fig.show='hold', include=FALSE, out.height="20%", out.width="80%"}
+knitr::include_graphics("hw6_33__.png")
+```
+```{r eval=FALSE, fig.align="center", include=FALSE, out.height="20%", out.width="80%"}
+ggplot(data=mpg, aes(, group = cyl, x=cyl, y=hwy)) + geom_boxplot() + theme_bw() + theme(axis.title=element_text(size=13,face='bold'))
+
+```
+
+
+
+
+```{r eval=FALSE, fig.align="center", fig.show='hold', include=FALSE, out.height="29%", out.width="47%"}
+knitr::include_graphics("hw5_2.png")
+```
+
+
+
+\newpage
+
+```{r, echo=TRUE, results='hide'}
+"Written by Lee, Da-In"
+```
+
+

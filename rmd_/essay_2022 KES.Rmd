@@ -1,0 +1,91 @@
+---
+# title: "essay, one-paged-note, homework"
+# subtitle: "subtitle"
+# author: "심민규 `mksim@seoultech.ac.kr`"
+# date: "Lastly updated on `r Sys.Date()`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    highlight: haddock
+    keep_tex: yes
+    includes:
+      in_header: latex_support/latex-topmatter_pdf.tex
+    # toc: yes # table of contents yes/no/True/False
+    # toc_depth: 2 # toc depth 1 or 2 recommended
+    number_sections: yes # yes/no/True/False
+  html_document:
+    toc: yes
+    toc_depth: '1'
+    df_print: paged
+monofont: Courier New # Consolas or Courier New
+smaller: yes
+classoption: a4paper # letter or a4paper
+header-includes:
+- \usepackage{tikz}
+- \usepackage{pgfplots}
+- \pgfplotsset{compat=1.17}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+```
+
+<!-- \begin{center} -->
+<!-- \vspace{100pt} -->
+<!-- \includegraphics[height=0.3in]{latex_support/logo_ds.png}  -->
+<!-- \end{center} -->
+```{r, out.height="10%", out.width="40%", fig.align="center"}
+knitr::include_graphics("kes.png")
+```
+\begin{center}
+\begin{Large}
+
+\end{Large}
+\begin{large}
+
+\end{large}
+\end{center}
+
+  
+  
+\ 한국전자전(KES)는 4차 산업 혁명을 주도하는 전자, IT 산업의 트렌드를 살펴볼 수 있고 앞으로 여러 산업의 나아갈 방향에 대해 서로 공유하고 고민해 볼 수 있는 대한민국의 대표 전자, IT 산업전시회 이다.  
+
+\
+2022 한국전자전은 크게 **7가지**의 카테고리로 구역이 나누어져 있다. 
+
+\   **1. 스마트비즈 엑스포**  
+\      생활용품, 식음료, 의료보건, 산업소재 등 다양한 분야 95개의 중소기업들의 판로 개척을 돕기 위해 있는 구역이다.  
+
+\   **2. Inno FuTech(Future Tech)**  
+\      전자ㆍIT분야의 유망기업의 새로운 시장을 개척하고 수출중소기업을 발굴하기 위한 새로운 전시플랫폼을 소개한다.  
+
+\   **3. Metaverse Korea**  
+\      위드 코로나 시대가 되면서 전 산업과 상생하는 메타버스에 대한 최신 트렌드를 확인할 수 있다. 실제로 어떻게 산업들에서 활용되고 있는지 체험 할 수 있다.  
+
+\   **4. 가전/스마트홈관**  
+\      이제는 가전이 점점 똑똑해지는 세상이다. IoT(사물인터넷) 기반의 가전이 어떤 일을 할 수 있는지 확인할 수 있다. (종합가전제품, 중소가전, 홈디바이스, 전자제품, 정보기기, 뉴노멀생활가전)
+
+\   **5. 전자부품소재관**  
+\      기존의 전자부품이나 소재가 업그레이드 된 제품들을 소개한다. (전자부품, 반도체, 센서, 디스플레이, 소재, 장비)  
+
+\   **6. 테크솔루션관**  
+\      생산제조기술, AI, 로봇공학, IoT, 빅데이터, 딥러닝, 통신, 스마트시티  
+
+\   **7. 융합신산업관**  
+\      전장솔루션, 미래자동차, 자율주행, 블록체인, 보안기기, 웨어러블, 드론, 3D, XR  
+
+\
+요즘 전자, IT 산업에서 어떤 아이디어들이 트렌드가 되는지 쉽게 파악할 수 있다. 또한 같은 주제의 기술을 사용해도 기업마다 어떻게 활용하는지에 따라 달라서 재미있고 기발한 아이디어들이 많아 우리 스스로에게도 좋은 동기부여가 될 수 있다. 의자에 앉아만 있지 말고 다음 한국전자전이 개최된다면 방문하러 가보는 것은 어떨까? 
+
+
+
+
+\newpage
+
+```{r, echo=TRUE, results='hide'}
+"Written by Lee, Da-In"
+```
+
+

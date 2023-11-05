@@ -1,0 +1,69 @@
+---
+# title: "essay, one-paged-note, homework"
+# subtitle: "subtitle"
+# author: "심민규 `mksim@seoultech.ac.kr`"
+# date: "Lastly updated on `r Sys.Date()`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    highlight: haddock
+    keep_tex: yes
+    includes:
+      in_header: latex_support/latex-topmatter_pdf.tex
+    # toc: yes # table of contents yes/no/True/False
+    # toc_depth: 2 # toc depth 1 or 2 recommended
+    number_sections: False # yes/no/True/False
+  html_document:
+    toc: yes
+    toc_depth: '1'
+    df_print: paged
+monofont: Courier New # Consolas or Courier New
+smaller: yes
+classoption: a4paper # letter or a4paper
+header-includes:
+- \usepackage{tikz}
+- \usepackage{pgfplots}
+- \pgfplotsset{compat=1.17}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+```
+
+<!-- \begin{center} -->
+<!-- \vspace{100pt} -->
+<!-- \includegraphics[height=0.3in]{latex_support/logo_ds.png}  -->
+<!-- \end{center} -->
+
+\begin{center}
+\begin{Large}
+GGPLOT 활용하기\\ 
+\end{Large}
+\begin{large}
+지도 그리기
+\end{large}
+\end{center}
+
+
+x축을 경도로 y축을 위도로 미국을 주 단위로 잘라 표현해보자. 색이 진할수록 살인율이 높게 나타난다.   
+```{r fig.align="center", fig.show='hold', out.height="50%", out.width="80%"}
+knitr::include_graphics("hw9_11.png")
+```
+
+
+
+
+
+
+
+
+
+\newpage
+
+```{r, echo=TRUE, results='hide'}
+"Written by Lee, Da-In"
+```
+
+

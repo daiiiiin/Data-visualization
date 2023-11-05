@@ -1,0 +1,105 @@
+---
+# title: "essay, one-paged-note, homework"
+# subtitle: "subtitle"
+# author: "심민규 `mksim@seoultech.ac.kr`"
+# date: "Lastly updated on `r Sys.Date()`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    highlight: haddock
+    keep_tex: yes
+    includes:
+      in_header: latex_support/latex-topmatter_pdf.tex
+    # toc: yes # table of contents yes/no/True/False
+    # toc_depth: 2 # toc depth 1 or 2 recommended
+    number_sections: False # yes/no/True/False
+  html_document:
+    toc: yes
+    toc_depth: '1'
+    df_print: paged
+monofont: Courier New # Consolas or Courier New
+smaller: yes
+classoption: a4paper # letter or a4paper
+header-includes:
+- \usepackage{tikz}
+- \usepackage{pgfplots}
+- \pgfplotsset{compat=1.17}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+```
+
+<!-- \begin{center} -->
+<!-- \vspace{100pt} -->
+<!-- \includegraphics[height=0.3in]{latex_support/logo_ds.png}  -->
+<!-- \end{center} -->
+
+\begin{center}
+\begin{Large}
+GGPLOT 활용하기\\ 
+\end{Large}
+\begin{large}
+그래프의 제목, 부제목, x축 레이블, y축 레이블, 범례 다루기
+\end{large}
+\end{center}
+
+```{r fig.align="center", fig.show='hold', out.height="28%", out.width="80%"}
+knitr::include_graphics("hw7_111.png")
+```
+
+
+
+**[1] 그래프의 3요소(what-why-how)를 살펴보자.**  
+
+  1. WHAT  
+    - MPG 데이터 세트의 배가량(displ)과 고속도로 연비(hwy), 자동차 종류(class) 데이터 사용
+    
+  2. WHY  
+    - 자동차의 종류에 따라 배기량과 연비가 어떤 관계를 가지고 있는지 알아보고자 한다.
+    
+  3. HOW  
+    - 배기량과 연비의 산점도, 추세선 사용  
+    - 자동차 종류에 따라 다른 색깔 사용
+   
+\  
+
+**[2] ~ [3] 그래프 설정 바꿔보기**  
+[그림2]는 [그림1]에 제목, 부제목, x축 레이블, y축 레이블을 추가한 그래프이다. [그림3]은 [그림2]의 범례의 위치를 상단으로 변경해 그린 그래프이다.  
+```{r eval=FALSE, include=FALSE}
+library(ggplot2)
+```
+```{r eval=FALSE, include=FALSE}
+fig1 <- ggplot(data=mpg, mapping=aes(x=displ, y=hwy, color=class)) + geom_point() + geom_smooth(aes(linetype=class), se=FALSE) + theme_bw()  
+
+fig2 <- fig1 + labs(title='자동차 종류에 따른 배기량과 연비',
+            subtitle = '산점도와 추세선',
+            x = "배기량(displ)",
+            y = "연비(hwy)") + theme(plot.title = element_text(hjust = 0.5, size=15,face='bold'), 
+                                   plot.subtitle = element_text(hjust = 0.5, size=15),
+                                   axis.title=element_text(size=12, face='bold'))  
+
+fig3 <- fig2 + theme(legend.position = "top")
+```
+```{r fig.align="center", fig.show='hold', out.height="20%", out.width="80%"}
+knitr::include_graphics("hw7_222.png")
+knitr::include_graphics("hw7_333.png")
+```
+
+
+
+```{r eval=FALSE, fig.align="center", fig.show='hold', include=FALSE, out.height="29%", out.width="47%"}
+knitr::include_graphics("hw5_2.png")
+```
+
+
+
+\newpage
+
+```{r, echo=TRUE, results='hide'}
+"Written by Lee, Da-In"
+```
+
+

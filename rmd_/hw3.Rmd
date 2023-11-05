@@ -1,0 +1,102 @@
+---
+# title: "essay, one-paged-note, homework"
+# subtitle: "subtitle"
+# author: "심민규 `mksim@seoultech.ac.kr`"
+# date: "Lastly updated on `r Sys.Date()`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    highlight: haddock
+    keep_tex: yes
+    includes:
+      in_header: latex_support/latex-topmatter_pdf.tex
+    # toc: yes # table of contents yes/no/True/False
+    # toc_depth: 2 # toc depth 1 or 2 recommended
+    number_sections: False # yes/no/True/False
+  html_document:
+    toc: yes
+    toc_depth: '1'
+    df_print: paged
+monofont: Courier New # Consolas or Courier New
+smaller: yes
+classoption: a4paper # letter or a4paper
+header-includes:
+- \usepackage{tikz}
+- \usepackage{pgfplots}
+- \pgfplotsset{compat=1.17}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+```
+
+<!-- \begin{center} -->
+<!-- \vspace{100pt} -->
+<!-- \includegraphics[height=0.3in]{latex_support/logo_ds.png}  -->
+<!-- \end{center} -->
+
+\begin{center}
+\begin{Large}
+타이디 데이터 만들기 \\ 
+\end{Large}
+\begin{large}
+중복 변수는 제거하자
+\end{large}
+\end{center}
+
+데이터 분석을 하기 전에 데이터가 어떻게 생겼는지 확인하는 작업은 필수적이다. 내가 분석할 데이터가 타이디(tidy)한 데이터가 아니라면 그에 맞는 처리를 수행해 데이터를 가공해야 한다. 다음의 who 데이터는 중복 변수를 가지고 있는데 하나씩 살펴보자.
+
+
+```{r, echo=FALSE, eval=TRUE}
+library(tidyr)
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(knitr)
+```
+
+|**country**|**iso2**|**iso3**|**year**|**new_sp_m014**|**new_sp_m1524**| **...**|
+|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
+|Afghanistan|AF|AFG|1980|NA|NA|...
+who 데이터 세트에는 여러가지 문제가 포함 되어있다. 중복 변수, 이상한 변수, 여러개의 결측값이 그 문제이다.  
+
+1) 먼저 결측값 제거 후 이상한 변수부터 처리해보자.^[ 상위 3개 행만 출력]  
+```{r eval=FALSE, include=FALSE}
+who1 <- who %>% gather(new_sp_m014:newrel_f65, key = "key", value = "cases", na.rm = TRUE)
+head(who1, 5)
+```
+
+```{r echo=FALSE}
+who1 <- who %>% gather(new_sp_m014:newrel_f65, key = "key", value = "cases", na.rm = TRUE)
+
+kable(head(who1, 3),
+      align=c("c","c","c","c","c", "c"))
+```
+
+2) 여러 값이 혼합되어 있는 상태를 분리한다.^[ 상위 3개 행만 출력]  
+```{r, echo=FALSE, eval=TRUE}
+who2 <- who1 %>% mutate(key = str_replace(key, "newrel", "new_rel"))
+who3 <- who2 %>% separate(key, c("new", "type", "sexage"), sep="_")
+who4 <- who3 %>% select(-new)
+who5 <- who4 %>%  separate(sexage, c("sex", "age"), sep=1)
+
+kable(head(who5, 3),
+      align=c("c","c","c","c","c","c","c","c"))
+```
+
+중복 문제만 남겨두고 타이디한 데이터를 만들었다. 데이터를 보면 **country**와 **iso2**^[ 국가 ISO 코드, ISO 3166-1 alpha-2], **iso3**^[ 국가 ISO 코드, ISO 3166-1 alpha-3] 모두 국가를 나타내는 변수라는 것을 확인할 수 있다. 따라서 세 변수가 중복 변수라고 할 수 있으므로 국가의 풀네임인 country를 남겨두고 iso2와 iso3를 제거한다.
+
+```{r,echo=FALSE, fig.align="center", out.width="48%", out.height="30%", fig.show='hold'}
+knitr::include_graphics("hw3_1.png")
+```
+
+
+
+\newpage
+```{r, echo=TRUE, results='hide'}
+"Written by Lee, Da-In"
+```
+
+

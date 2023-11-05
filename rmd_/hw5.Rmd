@@ -1,0 +1,78 @@
+---
+# title: "essay, one-paged-note, homework"
+# subtitle: "subtitle"
+# author: "심민규 `mksim@seoultech.ac.kr`"
+# date: "Lastly updated on `r Sys.Date()`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+    highlight: haddock
+    keep_tex: yes
+    includes:
+      in_header: latex_support/latex-topmatter_pdf.tex
+    # toc: yes # table of contents yes/no/True/False
+    # toc_depth: 2 # toc depth 1 or 2 recommended
+    number_sections: False # yes/no/True/False
+  html_document:
+    toc: yes
+    toc_depth: '1'
+    df_print: paged
+monofont: Courier New # Consolas or Courier New
+smaller: yes
+classoption: a4paper # letter or a4paper
+header-includes:
+- \usepackage{tikz}
+- \usepackage{pgfplots}
+- \pgfplotsset{compat=1.17}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+```
+
+<!-- \begin{center} -->
+<!-- \vspace{100pt} -->
+<!-- \includegraphics[height=0.3in]{latex_support/logo_ds.png}  -->
+<!-- \end{center} -->
+
+\begin{center}
+\begin{Large}
+비행기의 연식이 지연 시간과 관련이 있을까?\\ 
+\end{Large}
+\begin{large}
+연식과 관련된 다른 요인을 찾아보자
+\end{large}
+\end{center}
+
+\  
+
+공항에서 비행기를 타기 위해 기다리는 것은 설렘이 가득한 일이다. 하지만 지연으로 인한 기다림은 실망스럽고 지루할 뿐이다. 왜 비행기 지연이 발생하는 것일까? 비행기의 연식이 지연 시간에 영향을 미치는 걸까? 사실 비행기 연식이 지연시간에 직접적으로 영향을 주는 것은 아니다. 왜 그런지 살펴보자.  
+
+
+### 사용한 데이터  
+
+비행기 정보(tailnum, year)가 담긴 planes 데이터와 지연 정보(dep_delay, arr_delay)가 담긴 flights 데이터를 사용한다.출발 지연이 발생하면 자연스럽게 도착 지연이 발생하므로 여기서는 도착 지연(arr_delay) 변수를 사용한다.
+  
+
+### 비행기 연식(age)과 지연 시간(delay)  
+  
+비행기의 연식으로 전체 데이터를 그룹화 해서 연착 시간에 대한 그래프를 그리면 나이에 따라 비행기의 수가 굉장히 차이가 나기 때문에 정확한 결과를 판단하기 어렵다. 따라서 비행기의 연식을 5년 씩 묶어서 '0 ~ 4', '5 ~ 9', '10 ~ 14', '15 ~' 와 같이 그룹을 나누어 분석을 진행한다. 또한, 연착 시간에 대한 범위를 나누어 각 그룹 별로 얼마나 비중을 차지하고 있는지 살펴보자.  
+
+```{r,echo=FALSE, fig.align="center", out.width="47%", out.height="29%", fig.show='hold'}
+knitr::include_graphics("hw5_2.png")
+knitr::include_graphics("hw5_6.png")
+```
+
+[표 1]을 보면 모든 연식 그룹은 제대로 도착(30분 이하)한 비율이 가장 높다는 것을 확인할 수 있다. 연착 시간이 **'30 ~ 60'**이고 **'60 ~'**인 그룹은 **'on time'** 그룹보다 훨씬 적은 비율을 차지하는 것을 볼 수 있다. 비행기의 연식이 많아질수록 연착 시간이 길어진다고 할 수 없다는 것을 [표 1]을 통해 알 수 있다. [그림 1]은 [표 1]의 값을 이용해서 누적 그래프를 그린 그림이다. [표 1]과 같이 연식과 연착 시간 사이에 관련이 있다고 보기 어렵다는 것을 확인할 수 있다.  
+
+따라서 비행기의 연식과 연착 시간은 관련이 없다. 해당 문제의 요인과 관련있는 다른 요인을 찾아야 연착 시간에 영향을 주는 원인을 파악할 수 있을 것이다.  
+
+\newpage
+
+```{r, echo=TRUE, results='hide'}
+"Written by Lee, Da-In"
+```
+
+
