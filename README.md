@@ -7,7 +7,7 @@ These assignments were done to learn about visualization. It was not just about 
 ## 2. Study
 - How to use R Studio, R Markdown  
 - Data type and structure: Knowing what type of data you have and how it's structured can help guide how you visualize it.  
-- Use R libraries (dplyr, ggplot2) to perform various visualizations  
+- Use R libraries (dplyr, tidyr, ggplot2) to perform various visualizations  
 
 ## 3. Conclusion
 Through this project, I learned that you need to think about the right visualization method for each piece of data so that you can communicate what you want to say to the right people. Basically, visualization is up to the person who analyzes the data, but you need to think about the audience and be careful not to visualize it in a distorted way.  
